@@ -1,0 +1,38 @@
+header("Content-Type: text/html; charset=utf-8");
+header("Cache-Control:no-cashe");
+header("Pragma:no-cashe");
+
+<?php
+	$tt_data = $s_date.'~'.$e_date;
+	$edu_data = array('type'=> iconv("EUC-KR","UTF-8",$row["E_OPTION1"][$i]), 
+					  'title'=> iconv("EUC-KR","UTF-8",$row["SUBJECT"][$i]), 
+					  'recv_date'=> iconv("EUC-KR","UTF-8",$tt_data), 
+					  'lecture_date'=> iconv("EUC-KR","UTF-8",$row["PERIOD"][$i]), 
+					  'lecture_day'=>'' ,
+					  'lecture_time'=>'' ,
+					  'target'=> iconv("EUC-KR","UTF-8",$row["E_OPTION2"][$i]), 
+					  'fixed'=> iconv("EUC-KR","UTF-8",$row["NUMBER1"][$i]), 
+					  'waiting'=> iconv("EUC-KR","UTF-8",$row["ADD_NUMBER"][$i]), 
+					  'apply'=> iconv("EUC-KR","UTF-8",$tcnt), 
+					  'apply_waiting'=> iconv("EUC-KR","UTF-8",$dcnt), 
+					  'state'=> iconv("EUC-KR","UTF-8",$state2), 
+					  'instructor_name'=> iconv("EUC-KR","UTF-8",$row["TEACHER"][$i]),
+					  'open_date'=> iconv("EUC-KR","UTF-8",$row["E_OPTION3"][$i]),
+					  'location'=> iconv("EUC-KR","UTF-8",$row["CLASSROOM"][$i]),
+					  'online_yn'=> iconv("EUC-KR","UTF-8",$row["E_OPTION3"][$i]),
+					  'online_manual'=> iconv("EUC-KR","UTF-8",$row["E_OPTION5"][$i])
+					);
+	
+
+	//echo json_encode($edu_data);
+	echo to_han (json_encode($edu_data));
+	}
+
+
+function han ($s) { return reset(json_decode('{"s":"'.$s.'"}')); }
+function to_han ($str) { return preg_replace('/(\\\u[a-f0-9]+)+/e','han("$0")',$str); }
+
+?>
+
+JSON으로 변환시켜 보여줌
+
