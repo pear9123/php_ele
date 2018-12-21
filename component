@@ -1,6 +1,7 @@
 기본 컴포넌트 메모 
 $DOCUMENT_ROOT = 홈페이지 구성 최초  경로 
 $_SERVER['HTTP_HOST'] = 현재 경로
+session_start();
 $_SESSION['NAME'] = 
 
 include()와 require()의 차이점
